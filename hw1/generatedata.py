@@ -1,5 +1,5 @@
 import sys, random, copy, string # _____________________
-#                                  _____________________ Modules to be used.
+				 # _____________________ Modules to be used.
 
 if len(sys.argv) != 6: # _______________________________ Checking if we get all the input we need.
 	print("Usage:")
@@ -68,6 +68,6 @@ with open(reads_file,"w") as reads_fl:
 			align0 += 1
 		reads_fl.write(current_read+"\n")
 
-print("reference length: {}\nnumberreads: {}\nread length: {}".format(ref_length,nreads,read_len))
+print("reference length: {}\nnumber reads: {}\nread length: {}".format(ref_length,nreads,read_len))
 print("aligns 0: {}\naligns 1: {}\naligns 2: {}\n".format(align0/nreads,align1/nreads,align2/nreads))
 # __ Prints the results
