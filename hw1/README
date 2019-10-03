@@ -1,8 +1,4 @@
-## Homework 1 - CME211 by Mert Can Simsek
-## This is an alignment program that computes the positions where reads exactly align to the
-## reference which are gene data generated manually. 
-
-#Part 1
+# ____________ Part 1 _____________
 
 $ python3 generatedata.py 1000 600 50 "ref_1.txt" "reads_1.txt"
 
@@ -31,8 +27,7 @@ aligns 1: 0.7488666666666667
 aligns 2: 0.09978333333333333
 
 ## Other than the reference and read lengths, the consideration I took into account while designing the
-## handwritten data was to pick different places in the reference for the reads that align once so that
-## it would help to catch a bug related with the placement of reads. Also, for the read that didn't align,
+## handwritten data was to pick different places in the reference for the reads that align once so that ## it would help to catch a bug related with the placement of reads. Also, for the read that didn't align,
 ## I wrote it in such a way that some part of it is contained in the reference but not all to see if the 
 ## search is held correctly.
 
@@ -46,6 +41,40 @@ aligns 2: 0.09978333333333333
 ## I spent some time looking up the basic syntax from lecture notes, but I expect as I get more used to
 ## coding in Python, the time I spend will be more and more efficient. 
 
+# ____________ Part 2 _____________
+
+$ python3 processdata.py ref_1.txt reads_1.txt align_1.txt
+
+aligns 0: 0.16333333333333333
+aligns 1: 0.73
+aligns 2: 0.10666666666666667
+
+$ python3 processdata.py ref_2.txt reads_2.txt align_2.txt
+
+aligns 0: 0.1485
+aligns 1: 0.7576666666666667
+aligns 2: 0.09383333333333334
+
+$ python3 processdata.py ref_3.txt reads_3.txt align_3.txt
+
+aligns 0: 0.15135
+aligns 1: 0.7488666666666667
+aligns 2: 0.09978333333333333
+
+## The distribution of the reads match exactly to the distribution as the data was created. 
+## Since we specified a pattern of data when we were generating the reads, this result was expected.
+## More than 2 alignments of a read is also counted as 2 (intentionally), since we ignore the third
+## possible alignment, so an error is not introduced in that sense.
+
+## Using the time module, elapsed time required for the data set 1 was around 0.04 seconds,
+## for the data set 2, it increased to 0.31 seconds, and for the data set 3, it was 24.3 seconds.
+## For the sake of a more accurate observation of the trend, I've generated a fourth data set with a 
+## reference length with 100000 with 60000 reads with read length 50. Process time required for this set ## was 2384.94 seconds. So the trend clearly seems to be linear. For a coverage of 30x, as we increase
+## the reference length and the amount of reads, the time required to process the data increases with the 
+## same rate.
+
+## This part of the code took less than 2 hours. Commenting and preparing the writeup took approximately
+## half an hour. 
 
 
 

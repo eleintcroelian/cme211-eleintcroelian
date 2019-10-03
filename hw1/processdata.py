@@ -1,4 +1,6 @@
-import sys, random, copy, string #__ Importing the modules to be used.
+import sys, random, copy, string, time #__ Importing the modules to be used.
+
+start_time = time.time()	       #__ Starting the timer
 
 if len(sys.argv) != 4:		 #__ Checking if the input arguments are as desired.
 	print('Usage:\n $ python3 processdata.py <ref_file> <reads_file> <align_file>\n')
@@ -8,7 +10,7 @@ ref_file=copy.copy(sys.argv[1])
 reads_file=copy.copy(sys.argv[2])
 align_file=copy.copy(sys.argv[3])
 
-if ref_file[-4:]!='.txt' or reads_file[-4:]!='.txt' or align_file[=4:]!='.txt':
+if ref_file[-4:]!='.txt' or reads_file[-4:]!='.txt' or align_file[-4:]!='.txt':
 				 # _ Checking if the files given as input are text files.
         print('Please specify a .txt file (Inputs [4] and [5])')
         sys.exit(0)
@@ -48,3 +50,7 @@ with open(align_file,'w') as align_f:
 				align2 += 1
 
 print("\naligns 0: {}\naligns 1: {}\naligns 2: {}\n".format(align0/(i+1),align1/(i+1),align2/(i+1)))
+
+elapsed_time = time.time() - start_time
+
+print("Time elapsed: {} seconds.\n".format(elapsed_time)); # __ Displays time elapsed.
