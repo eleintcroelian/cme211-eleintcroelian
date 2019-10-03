@@ -1,0 +1,5 @@
+TTT -1
+ACG 0 7
+ATA 5
+CGC 1
+TAT 4

@@ -1,0 +1,23 @@
+ximport sys, random, copy, string
+
+if len(sys.argv) != 4:
+	print('Usage:\n $ python3 processdata.py <ref_file> <reads_file> <align_file>\n')
+	sys.exit(0)
+
+ref_file=copy.copy(sys.argv[1])
+reads_file=copy.copy(sys.argv[2])
+align_file=copy.copy(sys.argv[3])
+
+with open(ref_file,'r') as ref_f:
+	ref=ref_f.read()
+
+	with open(reads_file,'r') as reads_f:
+
+		for i,line in enumerate(reads_f):
+
+			current_read=line[:-1]
+			print(current_read)
+			print(len(current_read))
+			if i==0:
+				break
+
