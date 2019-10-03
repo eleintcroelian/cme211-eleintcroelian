@@ -70,4 +70,4 @@ with open(reads_file,"w") as reads_fl:
 
 print("reference length: {}\nnumber reads: {}\nread length: {}".format(ref_length,nreads,read_len))
 print("aligns 0: {}\naligns 1: {}\naligns 2: {}\n".format(align0/nreads,align1/nreads,align2/nreads))
-# __ Prints the results
+				# __ Prints the results

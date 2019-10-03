@@ -36,17 +36,18 @@ with open(align_file,'w') as align_f:
 				align0 += 1
 				continue
 			while current_place != -1:     # __ If it did not fail, mark where it aligned and keep
-				counter += 1	       # __ searching for it, increasing the start point by the length
-						       # __ of the read. (Recursive repetition of a read is ignored.)
+				counter += 1	       # __ searching for it, increasing the start point by one.
+				if counter>2:
+					break	    # __ Breaks the while loop if there is more than two alignments.
 				align_f.write(" "+str(current_place))
-				next_search=current_place+len(line)
+				next_search=current_place+1
 				current_place=ref.find(current_read,next_search,len(ref))
 
 			align_f.write("\n")
 
 			if counter == 1:		    # __ Update the counters for the alignment
-				align1 += 1		    # __ Alignments more than 2 are ignored since
-			elif counter == 2:		    # __ the scope of homework doesn't cover it.
+				align1 += 1		    # __ Alignments more than 2 are counted as two alignments
+			elif counter == 2:
 				align2 += 1
 
 print("\naligns 0: {}\naligns 1: {}\naligns 2: {}\n".format(align0/(i+1),align1/(i+1),align2/(i+1)))
