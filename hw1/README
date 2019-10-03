@@ -32,14 +32,15 @@ aligns 2: 0.10056666666666667
 
 ## Other than the reference and read lengths, the consideration I took into account while designing the
 ## handwritten data was to pick different places in the reference for the reads that align once so that
-## it would help to catch a bug related with the placement of reads. Also, for the read that didn't align,
-## I wrote it in such a way that some part of it is contained in the reference but not all to see if the
+## it would help to catch a bug related with the placement of reads. Also, for the read which doesn't align,
+## it was written in such a way that a part of it is contained in the reference.The aim was to see if the
 ## search is held correctly.
 
 ## We shouldn't expect an exact 15% / 75% / 10% distribution for the reads since it is determined by
-## a number that is generated randomly. For small number of reads, the deviation from the desired
-## distribution may be large, but as the number of reads generated increases, we expect the ratios to
-## converge to the ratios desired, as can be seen in the example outputs above.
+## a number that is generated randomly. Also, the number of reads doesn't necessarily have to be a divisor 
+## of 100. For small number of reads, the deviation from the desired distribution may be large, but as the
+## number of reads generated increases, we expect the ratios to converge to the ratios desired, as can be
+## seen in the example outputs above.
 
 ## The total amount of time needed for this part to get correct results was around 3 hours, and the amount
 ## of time for adding the comments was around 20 minutes. Since this was my first Python experience,
@@ -82,10 +83,10 @@ Time elapsed: 24.05472755432129 seconds.
 ## Using the time module, elapsed time required for the data set 1 was around 0.037 seconds,
 ## for the data set 2, it increased to 0.277 seconds, and for the data set 3, it was 24.05 seconds.
 ## For the sake of a more accurate observation of the trend, I've generated a fourth data set with a
-## reference length with 100000 with 60000 reads with read length 50. Process time required for this set
+## reference length with 1000000 with 600000 reads with read length 50. Process time required for this set
 ## was 2384.94 seconds. So the trend clearly seems to be linear. For a coverage of 30x, as we increase
 ## the reference length and the amount of reads, the time required to process the data increases with the
-## same rate. Thus, for a human (who typically has a reference length of 3 billion length)at 30x coverage
+## same rate. Thus, for a human (who typically has a reference length of 3 billion length) at 30x coverage
 ## and a read length of 50, the time required would be approximately 7154820 seconds, which is 1987.5
 ## hours. So using this program is not feasible for everyday practice and the algorithm needs to be
 ## optimized further.
