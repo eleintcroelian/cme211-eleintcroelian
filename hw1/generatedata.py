@@ -38,8 +38,8 @@ with open(ref_file,"w") as ref_fl:
 
 with open(reads_file,"w") as reads_fl:
 	for i in range(nreads): # ________________ Read generation loop.
-		category=random.random() # _______ Creating a random integer to decide whether the read will align 0,1 or 2 times.
-		if category <= 0.75: # ___________ Reads that align 1 time make 75% of all reads.
+		category=random.random() # __ Creating a random integer to decide whether the read will align 0,1 or 2 times.
+		if category <= 0.75: # ______ Reads that align 1 time make 75% of all reads.
 			starting_position=int(random.random()/2.*ref_length)
 			 # __ Choosing a random position from the first half of the reference (Here,
 			 # __ it doesn't matter whether some part of the read extends to the other half
@@ -58,9 +58,11 @@ with open(reads_file,"w") as reads_fl:
 			read_trial=""
 			for i in range(read_len): # ____ Create a trial read for initial check.
 				read_trial=read_trial+random.choice(letters)
-			while ref.find(read_trial)!=-1: # ____ While loop will be carried out only if the trial read is not aligned.
+			while ref.find(read_trial)!=-1:
+				 # _____ While loop will be carried out only if the trial read is not aligned.
 				read_trial=""
-				for i in range(read_len): # __ Generate the next trial and check condition until it doesn't align.
+				for i in range(read_len):
+				 # _____ Generate the next trial and check condition until it doesn't align.
 					read_trial=read_trial+random.choice(letters)
 			current_read=copy.copy(read_trial)
 			align0 += 1
@@ -68,5 +70,4 @@ with open(reads_file,"w") as reads_fl:
 
 print("reference length: {}\nnumberreads: {}\nread length: {}".format(ref_length,nreads,read_len))
 print("aligns 0: {}\naligns 1: {}\naligns 2: {}\n".format(align0/nreads,align1/nreads,align2/nreads))
-#print("reference length: {}\nnumberreads: {}\nread length: {}\naligns 0: \ {}\naligns 1: {}\naligns 2: {}\n".format(ref_length,nreads,read_len,align0/nreads,align1/nreads,align2/nreads))
-
+# __ Prints the results
