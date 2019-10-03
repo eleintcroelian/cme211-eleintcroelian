@@ -1,4 +1,4 @@
-TTT -1
+CGG -1
 ACG 0 7
 ATA 5
 CGC 1

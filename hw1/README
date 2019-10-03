@@ -1,3 +1,52 @@
-#Homework 1 for CME211 by Mert Can Simsek
-#This is an alignment program that computes the positions where reads exactly align to the
-#reference which are gene data generated manually. 
+## Homework 1 - CME211 by Mert Can Simsek
+## This is an alignment program that computes the positions where reads exactly align to the
+## reference which are gene data generated manually. 
+
+#Part 1
+
+$ python3 generatedata.py 1000 600 50 "ref_1.txt" "reads_1.txt"
+
+reference length: 1000
+numberreads: 600
+read length: 50
+aligns 0: 0.16333333333333333
+aligns 1: 0.73
+aligns 2: 0.10666666666666667
+
+$ python3 generatedata.py 10000 6000 50 "ref_2.txt" "reads_2.txt"
+
+reference length: 10000
+numberreads: 6000
+read length: 50
+aligns 0: 0.1485
+aligns 1: 0.7576666666666667
+aligns 2: 0.09383333333333334
+
+$ python3 generatedata.py 100000 60000 50 "ref_3.txt" "reads_3.txt"
+reference length: 100000
+numberreads: 60000
+read length: 50
+aligns 0: 0.15135
+aligns 1: 0.7488666666666667
+aligns 2: 0.09978333333333333
+
+## Other than the reference and read lengths, the consideration I took into account while designing the
+## handwritten data was to pick different places in the reference for the reads that align once so that
+## it would help to catch a bug related with the placement of reads. Also, for the read that didn't align,
+## I wrote it in such a way that some part of it is contained in the reference but not all to see if the 
+## search is held correctly.
+
+## We shouldn't expect an exact 15% / 75% / 10% distribution for the reads since it is determined by 
+## a number that is generated randomly. For small number of reads, the deviation from the desired
+## distribution may be large, but as the number of reads generated increases, we expect the ratios to
+## converge to the ratios desired, as can be seen in the example outputs above.
+
+## The total amount of time needed for this part to get correct results was around 3 hours, and the amount
+## of time for adding the comments was around 20 minutes. Since this was my first Python experience,
+## I spent some time looking up the basic syntax from lecture notes, but I expect as I get more used to
+## coding in Python, the time I spend will be more and more efficient. 
+
+
+
+
+
