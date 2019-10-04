@@ -39,7 +39,7 @@ with open(align_file,'w') as align_f:
 				if counter>2:
 					break	    # __ Breaks the while loop if there is more than two alignments.
 				align_f.write(" "+str(current_place))
-				next_search=current_place+1
+				next_search=current_place+
 				current_place=ref.find(current_read,next_search,len(ref))
 
 			align_f.write("\n")
