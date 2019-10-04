@@ -79,7 +79,10 @@ Time elapsed: 24.05472755432129 seconds.
 ## The distribution of the reads match exactly to the distribution as the data was created.
 ## Since we specified a pattern of data when we were generating the reads, this result was expected.
 ## More than 2 alignments of a read is also counted as 2 (intentionally), since we ignore the third
-## possible alignment, so an error is not introduced in that sense.
+## possible alignment, so an error is not introduced in that sense. However, even though we generate
+## the data in a specified pattern, repetitions from the first half can be seen in the last 25%, leading
+## to extra two aligned reads than intended. The chances of this is small given the large number of 
+## read lengths, and this was seen only in a few cases of test runs. 
 
 ## Using the time module, elapsed time required for the data set 1 was around 0.037 seconds,
 ## for the data set 2, it increased to 0.277 seconds, and for the data set 3, it was 24.05 seconds.
@@ -90,7 +93,8 @@ Time elapsed: 24.05472755432129 seconds.
 ## same rate. Thus, for a human (who typically has a reference length of 3 billion length) at 30x coverage
 ## and a read length of 50, the time required would be approximately 7154820 seconds, which is 1987.5
 ## hours. So using this program is not feasible for everyday practice and the algorithm needs to be
-## optimized further.
+## optimized further. Also, as seen in the lectures, we can say that finding sub-strings are in the order
+## of O(n) in time complexity. Linear increase of time complexity agrees with the results we achieved.
 
 ## This part of the code took less than 3 hours. Commenting and preparing the writeup took approximately
 ## half an hour.
