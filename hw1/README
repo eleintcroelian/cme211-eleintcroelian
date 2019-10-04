@@ -41,8 +41,10 @@ aligns 2: 0.10056666666666667
 ## a number that is generated randomly. Also, the number of reads doesn't necessarily have to be a divisor 
 ## of 100. For small number of reads, the deviation from the desired distribution may be large, but as the
 ## number of reads generated increases, we expect the ratios to converge to the ratios desired, as can be
-## seen in the example outputs above. Additionally, an alignment of a read overlap with another alignment
-## of the same read, where we count it as 
+## seen in the example outputs above. Additionally, when we create the reads copying from the reference,
+## we have a strong suggestion of the number of its alignment based on the location where we copied it from,
+## however, the read may be aligned in another part of the reference as well. It may even be aligning on
+## the references boundaries (75%) because of the randomness, leading to a deviation as well.
 
 ## The total amount of time needed for this part to get correct results was around 3 hours, and the amount
 ## of time for adding the comments was around 20 minutes. Since this was my first Python experience,
@@ -77,7 +79,7 @@ aligns 2: 0.10056666666666667
 
 Time elapsed: 24.05472755432129 seconds.
 
-## The distribution of the reads match exactly to the distribution as the data was created.
+## Distribution of the reads for these data sets match exactly to the distribution as the data was created.
 ## Since we specified a pattern of data when we were generating the reads, this result was expected.
 ## More than 2 alignments of a read is also counted as 2 (intentionally), since we ignore the third
 ## possible alignment, so an error is not introduced in that sense. However, even though we generate
