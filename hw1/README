@@ -91,13 +91,17 @@ Time elapsed: 24.05472755432129 seconds.
 ## for the data set 2, it increased to 0.277 seconds, and for the data set 3, it was 24.05 seconds.
 ## For the sake of a more accurate observation of the trend, I've generated a fourth data set with a
 ## reference length with 1000000 with 600000 reads with read length 50. Process time required for this set
-## was 2384.94 seconds. So the trend clearly seems to be linear. For a coverage of 30x, as we increase
-## the reference length and the amount of reads, the time required to process the data increases with the
-## same rate. Thus, for a human (who typically has a reference length of 3 billion length) at 30x coverage
-## and a read length of 50, the time required would be approximately 7154820 seconds, which is 1987.5
-## hours. So using this program is not feasible for everyday practice and the algorithm needs to be
-## optimized further. Also, as seen in the lectures, we can say that finding sub-strings are in the order
-## of O(n) in time complexity. Linear increase of time complexity agrees with the results we achieved.
+## was 2384.94 seconds. So the trend clearly seems to be quadratic. This result was expected because the reference
+## length is increased by an order of magnitude and since string.find() is O(n) in time complexity, the operations
+## held for searching a read in a reference is increased by 10 times. Also, the total number of calling string.find()
+## is increased by another order of magnitude (number of reads are increased by 10 times), resulting with a
+## 100 times more operations for each data set than the previous. For a coverage of 30x, as we increase
+## the reference length and the amount of reads, the time required to process the data increases with square
+## of same rate. Thus, for a human (who typically has a reference length of 3 billion length) at 30x coverage
+## and a read length of 50, the time required would be approximately 1.8e9/600000*3e9/1e6*2400=21600000000
+## seconds, which is 6000000 hours or 684.93 computation years. So using this program with a single computer
+## is not possible for practice and the algorithm needs to be optimized further both by reducing the number of
+## operations and the parallelization for effective use of many other computers simultaneously.
 
-## This part of the code took less than 3 hours. Commenting and preparing the writeup took approximately
-## half an hour.
+## This part of the code took less than 3 hours. Commenting and preparing the writeup took
+## approximately another hour.
