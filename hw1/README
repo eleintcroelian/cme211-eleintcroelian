@@ -34,7 +34,8 @@ aligns 2: 0.10056666666666667
 ## handwritten data was to pick different places in the reference for the reads that align once so that
 ## it would help to catch a bug related with the placement of reads. Also, for the read which doesn't align,
 ## it was written in such a way that a part of it is contained in the reference.The aim was to see if the
-## search is held correctly.
+## search is held correctly. Lastly, the read that would align twice was aligned on itself, which is a
+## stronger case for detecting reads that align twice.
 
 ## We shouldn't expect an exact 15% / 75% / 10% distribution for the reads since it is determined by
 ## a number that is generated randomly. Also, the number of reads doesn't necessarily have to be a divisor 
