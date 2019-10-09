@@ -1,0 +1,114 @@
+FILE:          README
+DOCUMENTATION  
+
+COMMENTS:
+-Excellent.
+
+                  
+
+
+--------------------------
+FILE:          README
+DOCUMENTATION  
+
+COMMENTS:
+-Good observations for the distribution.
+-Excellent investigation into the runtime and analysis. Your findings
+-indeed match up with the O(n) average time complexity of the string
+-find function. Good insight regarding need for parallelization.
+
+                  
+
+
+--------------------------
+FILE:          generatedata.py
+STYLE          
+
+COMMENTS:
+-Recommended to have imports in alphabetical order
+-for readers to easily see dependencies.
+
+RELEVANT CODE:
+import sys, random, copy, string # _____________________
+				 # _____________________ Modules to be used.
+
+                  
+
+
+--------------------------
+FILE:          generatedata.py
+STYLE          
+
+COMMENTS:
+-While it's fine to use copy.copy for immutable objects like
+-numbers and strings, it is not necessary--nothing bad will
+-happen if you write
+-ref_length=int(sys.argv[1])
+-for example!
+
+RELEVANT CODE:
+ref_length=int(copy.copy(sys.argv[1])) # _______________ Assigning the input to variables.
+
+                  
+
+
+--------------------------
+FILE:          generatedata.py
+FUNCTIONALITY  
+
+COMMENTS:
+-Good check! This is a specific design choice that restricts
+-the user to using text files ending in '.txt'. This is good
+-if the text input you are expecting always ends in '.txt'.
+-Note that text files may not necessarily end in '.txt'. For
+-example, .py files are technically text (i.e., not binary
+-files).
+
+RELEVANT CODE:
+if ref_file[-4:]!='.txt' or reads_file[-4:]!='.txt': # _ Checking if the files given as input are text files.
+
+	print('Please specify a .txt file (Inputs [4] and [5])')
+	sys.exit(0)
+
+                  
+
+
+--------------------------
+FILE:          generatedata.py
+DOCUMENTATION  
+
+COMMENTS:
+-While the comments are instructive, the lines leading from the code
+-to the comment takes a bit getting used to. I would recommend using
+-a comment on the line before the code if you need to. Comments for
+-some lines (e.g., when writing to a file) can be skipped, because
+-the line is self-document and clear on its own.
+
+                  
+
+
+--------------------------
+FILE:          processdata.py
+FUNCTIONALITY  
+
+COMMENTS:
+-Expecting the reference length and number of reads in the output.
+
+POINTS DEDUCTED: 2
+
+
+--------------------------
+
+GRADING TA                  
+SUNet ID: flam, GitHub ID fredriclam
+###################################################
+
+CORRECTNESS/FUNCTIONALITY SCORE:              +
+###################################################
+
+STYLE SCORE:                              +
+###################################################
+
+WRITEUP SCORE:                            +
+###################################################
+If you have any problem about grading result, please file an issue in your GitHub repo.
