@@ -1,12 +1,24 @@
+#--style_0
+#--Recommended to have imports in alphabetical order
+#--for readers to easily see dependencies.
+#--START
 import sys, random, copy, string # _____________________
 				 # _____________________ Modules to be used.
-
+#--END
 if len(sys.argv) != 6: # _______________________________ Checking if we get all the input we need.
 	print("Usage:")
 	print(" $ python3  generatedata.py <ref_length> <nreads> <read_len> <ref_file> <reads_file>")
 	sys.exit(0)
 
+#--style_0
+#--While it's fine to use copy.copy for immutable objects like
+#--numbers and strings, it is not necessary--nothing bad will
+#--happen if you write
+#--  ref_length=int(sys.argv[1])
+#--for example!
+#--START
 ref_length=int(copy.copy(sys.argv[1])) # _______________ Assigning the input to variables.
+#--END
 
 nreads=int(copy.copy(sys.argv[2]))
 
@@ -20,11 +32,19 @@ align1=0 # _____________________________________________ Initializing the counte
 align2=0
 align0=0
 
+#--functionality_0
+#--Good check! This is a specific design choice that restricts
+#--the user to using text files ending in '.txt'. This is good
+#--if the text input you are expecting always ends in '.txt'.
+#--Note that text files may not necessarily end in '.txt'. For
+#--example, .py files are technically text (i.e., not binary
+#--files).
+#--START
 if ref_file[-4:]!='.txt' or reads_file[-4:]!='.txt': # _ Checking if the files given as input are text files.
 
 	print('Please specify a .txt file (Inputs [4] and [5])')
 	sys.exit(0)
-
+#--END
 letters = ["A","G","T","C"]
 
 currentref="" # ________________________________________ Initializing the reference.
@@ -71,3 +91,11 @@ with open(reads_file,"w") as reads_fl:
 print("reference length: {}\nnumber reads: {}\nread length: {}".format(ref_length,nreads,read_len))
 print("aligns 0: {}\naligns 1: {}\naligns 2: {}\n".format(align0/nreads,align1/nreads,align2/nreads))
 				# __ Prints the results
+
+#--documentation_0
+#--While the comments are instructive, the lines leading from the code
+#--to the comment takes a bit getting used to. I would recommend using
+#--a comment on the line before the code if you need to. Comments for
+#--some lines (e.g., when writing to a file) can be skipped, because
+#--the line is self-document and clear on its own.
+#--END

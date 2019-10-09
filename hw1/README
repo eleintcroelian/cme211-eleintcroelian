@@ -51,6 +51,10 @@ aligns 2: 0.10056666666666667
 ## I spent some time looking up the basic syntax from lecture notes, but I expect as I get more used to
 ## coding in Python, the time I spend will be more and more efficient.
 
+#--documentation_0
+#--Excellent.
+#--END
+
 # ____________ Part 2 _____________
 
 ##Output logs:
@@ -105,3 +109,10 @@ Time elapsed: 24.05472755432129 seconds.
 
 ## This part of the code took less than 3 hours. Commenting and preparing the writeup took
 ## approximately another hour.
+
+#--documentation_-1
+#--Good observations for the distribution.
+#--Excellent investigation into the runtime and analysis. Your findings
+#--indeed match up with the O(n) average time complexity of the string
+#--find function. Good insight regarding need for parallelization.
+#--END

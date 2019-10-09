@@ -49,6 +49,10 @@ with open(align_file,'w') as align_f:
 			elif counter >= 2:
 				align2 += 1
 
+#--functionality_2
+#--Expecting the reference length and number of reads in the output.
+#--END
+
 print("\naligns 0: {}\naligns 1: {}\naligns 2: {}\n".format(align0/(i+1),align1/(i+1),align2/(i+1)))
 
 elapsed_time = time.time() - start_time
