@@ -1,9 +1,11 @@
-import copy,math,sys,time       #__ Importing the modules to be used.
+import copy,math,sys,time       # Importing the modules to be used.
 
-t0 = time.time()                #__ Starting the timer
+t0 = time.time()                # Starting the timer
 
-if len(sys.argv) >4 or len(sys.argv)<3: #__ Checking if the input arguments are as desired.
-    print('Usage: $python3 similarity.py <data_file> <output_file> [user_thresh (default = 5)]\n')
+if len(sys.argv) >4 or len(sys.argv)<3:
+    # Checking if the input arguments are as desired.
+    print('Usage: $python3 similarity.py <data_file> <output_file>\
+ [user_thresh (default = 5)]\n')
     sys.exit(0)
 data_file=copy.copy(sys.argv[1])
 output_file=copy.copy(sys.argv[2])
@@ -52,10 +54,10 @@ def assigntodict_user_movie_to_rating(file):
 
 def cosinesimilarity(users_a,users_b,dict_data_user_movie,avg_a,avg_b,
                      movie_a,movie_b):
-    # Gets user ids who rated movies a and b and the ratings respectively, the
-    # average ratings and the ids of movies a and b as input, giving the
-    # cosine similarity P_a_b as output. If there is a zero denominator,
-    # the value is returned as 0.0.
+  # Gets user ids who rated movies a and b and the ratings respectively,
+  # the average ratings and the ids of movies a and b as input, giving the
+  # cosine similarity P_a_b as output. If there is a zero denominator,
+  # the value is returned as 0.0.
         sum1=0
         sum2=0
         sum3=0
@@ -96,7 +98,8 @@ for movies in dict_data_avg:
 
 output=open(output_file,'w')
 
-for movie_a in sorted(dict_data_movies.keys()): #Looping over movies reviewed
+for movie_a in sorted(dict_data_movies.keys()):
+			       #Looping over movies reviewed
     output.write(str(movie_a)) #writes the movie id to file
     P_a_b_current=-2 #initializing similarity coefficient and common user
     common_user_current=0
@@ -146,4 +149,3 @@ print('Minimum number of common users: {}'.format(user_thresh))
 print('Read {} lines with total of {} movies and {} users'\
       .format(len(dict_data_user_movie), len(dict_data_avg),len(dict_user)))
 print('Computed similarities in {} seconds'.format(round(t1-t0,3)))
-
