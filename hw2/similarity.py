@@ -23,7 +23,7 @@ def assign_to_dict_i_jk(file,i,j,k):
    # dictionary as output after all lines are read.
 
     dict_data={}
-    with open(file) as f:
+    with open(file,'r') as f:
         for line in f:
             if line=='\n':
                 continue
@@ -42,7 +42,7 @@ def assigntodict_user_movie_to_rating(file):
    # If the line read is an empty line, it is skipped. Returns the
    # dictionary as output after all lines are read.
     dict_data={}
-    with open(file) as f:
+    with open(file,'r') as f:
         for line in f:
             if line=='\n':
                 break
@@ -145,5 +145,5 @@ print('Output file for similarity data: '+output_file)
 print('Minimum number of common users: {}'.format(user_thresh))
 print('Read {} lines with total of {} movies and {} users'\
       .format(len(dict_data_user_movie), len(dict_data_avg),len(dict_user)))
-print('Computed similarities in {} seconds'.format(t1-t0))
+print('Computed similarities in {} seconds'.format(round(t1-t0,3)))
 

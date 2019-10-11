@@ -1,1 +1,46 @@
-README file for hw2. Mert Can Simsek
+README file for CME211 - Homework 2 by Mert Can Simsek
+
+Part 1
+
+
+1- I tried to create a data set with two similar movies and 
+a third movie not similar with either two. Total number of
+movies was 3 and total users were 10 with total of 30 ratings.
+
+2- The data file provided is not sorted, and one of the
+considerations was to have a set not sorted. I tried to
+have a few users rating only 5 and 1 as mentioned in the 
+homework instructions. There were 4 columns seperated with
+a tab, same as in the data file.
+
+3- After I got the output from the similarity.py for the test
+data, I hand calculated the similarities for the movies by
+hand to check if they matched, which they did. I did the
+calculations in a short MATLAB code which was hard coded
+for the test data, unlike similarity.py.
+
+
+Part 2
+
+
+Command line log:
+
+$ python3 similarity.py u.data output.txt
+Input MovieLens file: u.data
+Output file for similarity data: output.txt
+Minimum number of common users: 5
+Read 100000 lines with total of 1682 movies and 943 users
+Computed similarities in 40.203 seconds
+
+
+There are three functions in similarity.py. One of them 
+calculates the adjusted cosine similarity for two movies.
+This function is the mostly used function in the code,
+and is called for every movie comparison. The other two
+functions are for creating dictionaries from the data file.
+One creates dictionaries with a key as an integer and a list
+as a value, taking inputs for which column to be a key or a
+value. Other one has a different format in which the key is
+a tuple and the value is an integer. These functions are
+called in the beginning of the code, saving a lot of lines. 
+
