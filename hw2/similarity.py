@@ -133,7 +133,7 @@ for movie_a in sorted(dict_data_movies.keys()): #Looping over movies reviewed
         #check if there is a similar movie with enough common users, if yes,
         #write (most similar movie id, similarity coef.,# of common users )
         output.write(" ("+str(most_similar)+\
-        ", "+str(round(P_a_b_current,5))+\
+        ", "+str(round(P_a_b_current,2))+\
         ", "+str(common_user_current)+") \n")
     else:
         output.write("\n")

@@ -25,13 +25,28 @@ Part 2
 
 Command line log:
 
-$ python3 similarity.py u.data output.txt
-Input MovieLens file: u.data
-Output file for similarity data: output.txt
+
+$ python3 similarity.py ml-100k/u.data similarities.txt
+Input MovieLens file: ml-100k/u.data
+Output file for similarity data: similarities.txt
 Minimum number of common users: 5
 Read 100000 lines with total of 1682 movies and 943 users
-Computed similarities in 40.203 seconds
+Computed similarities in 44.907 seconds
 
+
+The first 10 lines of the output similarity file:
+
+$ head -n 10 similarities.txt 
+1 (918, 0.91, 5) 
+2 (1056, 1.0, 5) 
+3 (1081, 0.98, 5) 
+4 (35, 0.8, 6) 
+5 (976, 0.93, 5) 
+6 (279, 0.96, 5) 
+7 (968, 1.0, 7) 
+8 (590, 0.86, 6) 
+9 (113, 0.96, 5) 
+10 (1202, 0.97, 5) 
 
 There are three functions in similarity.py. One of them 
 calculates the adjusted cosine similarity for two movies.
