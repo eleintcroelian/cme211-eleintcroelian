@@ -1,2 +1,43 @@
-Readme file for hw3
+Readme file for Homework 3 for CME211 (Autumn 2019) - Mert Can Simsek
+
+airfoil.py
+
+Airfoil class is designed for processing pressure distribution data of
+2D cross sections of wing designs. The class is designed for a data set
+consisting of coordinates of discritization of the wing model, named
+xy.dat, describing the geometry, and pressure coefficient data for each
+panel (lines defined with consecutive nodes). Using the data,
+non-dimensional lift coefficient is determined by integrating the pressure 
+distribution over the airfoil surface upon the class is initiated.
+
+To do this, the airfoil class gets a directory as an input, which is
+examined in importfiles method. All the file names inside the directory
+are stored in a data structure in the class. These names are then checked
+and the file whose name starts with 'xy' is stored as the geometry data.
+The structure of geometry data is a dictionary with a node number 
+associated with its coordinates and panel indices sith associated nodes.
+All the files whose names start with 'alpha' are stored as pressure 
+coefficient data according to the digits following in the file name.
+For example, alpha-4.0.dat would be stored as [-4.0]:[data inside the 
+file]. If the file names are not as expected, airfoil class raises
+a RuntimeError.
+
+After storing the data from the files, the chord length, the distance from
+the leading edge to the trailing edge of the airfoil. To do this, distance
+between all nodes are compared and the maximum is chosen to be the chord
+length.
+
+Then the dimensionless force for each panel is calculated in calc_delcx_delcy
+method by multiplying the pressure coefficient by the panel length, non-
+dimensionalizing with the chord length. This force is then decomposed into
+components into the cartesian coordinates giving delc_x and delc_y. Summing
+these values for all panels gives the total force on the airfoil cx and cy.
+The lift coefficient is calculated by summing cx multiplied with -sin(alpha)
+and cy multiplied with cos(alpha). Also, stagnation points, where flow
+velocity goes zero and the pressure coefficent approaches to 1.0 are found.
+All of these variables are stored in the class structure, encapsulated.
+
+Lastly, overriding the class representation, we invoke a table of results
+when print(<airfoil object>) is called. For each alpha data set, lift
+coefficient and stagnation points are represented.
 

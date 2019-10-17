@@ -20,19 +20,25 @@ class Airfoil:
             for name in files:
                 self.filenames.append(os.path.join(name))
                 #store all files in the inout directory
-
         try:
             os.chdir(self.inputdir)
 
         except FileNotFoundError:
             raise RuntimeError("File not found, possibly missing trailing\
                                delimiter.")
-
+        xyflag=False
+        alphaflag=False
+	#Flags are True if there exists xy and alpha files.
         for name in self.filenames:
             if name.startswith('alpha'):
-                #select files that start with 'alpha'
+                alphaflag=True
 
-                datakey=float(name[5:name.find('.dat')])
+                #select files that start with 'alpha'
+                try:
+                    datakey=float(name[5:name.find('.dat')])
+                except ValueError:
+                    raise RuntimeError("Expected digits after 'alpha'\
+                                       (i.e. alpha-3.0.dat).")
                 #get alpha value
 
                 with open(name,'r') as alphafile:
@@ -50,7 +56,7 @@ class Airfoil:
 
             elif name.startswith('xy'):
                 #store xy file to another dictionary
-
+                xyflag=True
 
                 nodenumber=1
                 #node number index initiation
@@ -74,37 +80,35 @@ class Airfoil:
                     self.title=xyfile.readline()
                     #get the dataset title
             else:
-                raise RuntimeError("Could not find data files (need xy.dat\
-                                    and alpha<value>.dat).")
+                continue
+
+        if not xyflag:
+            raise RuntimeError("Could not find xy file (need xy.dat).")
+        if not alphaflag:
+            raise RuntimeError("Could not find alpha files (need\
+                                    alpha<value>.dat).")
 
     def calc_chordlength(self):
 
-        leftnode=1
-        rightnode=1
         #initiate node numbers for nodes in leading and trailing edge
+        dist=0
 
-        for key in self.nodes.keys():
-            if self.nodes[key][0]<self.nodes[leftnode][0]:
-                leftnode=copy.copy(key)
-                #compare each node's x coordinate with the next
-                #if x coordinate of the next node is less, assign it as
-                #the rightmost node
-
-            if self.nodes[key][0]>self.nodes[rightnode][0]:
-                #compare each node's x coordinate with the next
-                #if x coordinate of the next node is bigger, assign it as
-                #the leftmost node
-
-                rightnode=copy.copy(key)
-        left_x=self.nodes[leftnode][0]
-        left_y=self.nodes[leftnode][1]
-        right_x=self.nodes[rightnode][0]
-        right_y=self.nodes[rightnode][1]
-        #get coordinates of leftmost and rightmost node
-
-        self.chord_length=math.sqrt(pow((right_x-left_x),2)+
-                                    pow((right_y-left_y),2))
-        #calculate the chord length
+        for node1 in self.nodes.keys():
+            #looping over nodes
+            x1=self.nodes[node1][0]
+            y1=self.nodes[node1][1]
+            #storing x and y coords of each node
+            for node2 in self.nodes.keys():
+                #looping over nodes again
+                x2=self.nodes[node2][0]
+                y2=self.nodes[node2][1]
+                temp_dist=math.sqrt(pow((x1-x2),2)+
+                                    pow((y1-y2),2))
+                #calculating the distance between node1 and node2
+                if temp_dist>dist:
+                    dist=copy.copy(temp_dist)
+                #update chord length if new distance is bigger
+        self.chord_length=copy.copy(dist)
 
     def calc_delcx_delcy(self):
 
@@ -189,14 +193,15 @@ class Airfoil:
             #to a dictionary
 
     def __repr__(self):
-        l1='Test Case: {}\n\n'.format(self.title)
+
+        l1='Test Case: {}\n'.format(self.title)
         l2=' alpha        cl               stagnation pt\n'
         l3=' ______     ________    _________________________\n'
         l4=''
         #first three lines are not dataset dependent
 
         for alpha in sorted(self.alphasets.keys()):
-            #for each alpha set, add a line that contains the corresponding
+            #for each alpha set, add a line that contains the corresponding 
             #cl value and the stagnation point coordinates and the pressure
             #coefficient closest to 1.0
 
@@ -205,3 +210,4 @@ class Airfoil:
                     self.stagpoint[alpha][0][1],self.stagpoint[alpha][1])
 
         return l1+l2+l3+l4
+
