@@ -1,5 +1,10 @@
 import copy,math,sys,time       # Importing the modules to be used.
 
+#--functionality_0
+#--please write your script inside of if __name__ == "__main__" so that it only runs
+#--when called from the command line (not when imported) (see lecture 10/8 for more info)
+#--END
+
 t0 = time.time()                # Starting the timer
 
 if len(sys.argv) >4 or len(sys.argv)<3:
@@ -108,8 +113,14 @@ for movie_a in sorted(dict_data_movies.keys()):
         #skip movie if there is not enough reviews
         output.write("\n")
         continue
+    #--design_0
+    #--one way to halve your runtime is to make sure to not loop over 
+    #--the same two movies twice. In your case, you are computing both
+    #--cos_sim(a,b) and cos_sim(b,a)
+    #--START
     for movie_b in dict_data_movies.keys(): #Looping over movies again
         if movie_a==movie_b:
+    #--END
             #Skip the same movie to avoid comparing it by itself
             continue
         common_user_number=len(dict_data_users[movie_a] &\

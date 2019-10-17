@@ -1,0 +1,51 @@
+FILE:          README
+WRITEUP        
+
+COMMENTS:
+-please make sure you don't have extraneous files in your GitHub repository!
+
+                  
+
+
+--------------------------
+FILE:          similarity.py
+FUNCTIONALITY  
+
+COMMENTS:
+-please write your script inside of if __name__ == "__main__" so that it only runs
+-when called from the command line (not when imported) (see lecture 10/8 for more info)
+
+                  
+
+
+--------------------------
+FILE:          similarity.py
+DESIGN         
+
+COMMENTS:
+-one way to halve your runtime is to make sure to not loop over
+-the same two movies twice. In your case, you are computing both
+-cos_sim(a,b) and cos_sim(b,a)
+
+RELEVANT CODE:
+for movie_b in dict_data_movies.keys(): #Looping over movies again
+        if movie_a==movie_b:
+
+                  
+
+
+--------------------------
+
+GRADING TA                  
+SUNet ID: tedayrit, GitHub ID tedayrit
+###################################################
+
+functionality SCORE:                      +
+###################################################
+
+design SCORE:                             +
+###################################################
+
+writeup SCORE:                            +
+###################################################
+If you have any problem about grading result, please file an issue in your GitHub repo.
