@@ -1,17 +1,17 @@
 import copy,math,os
 
 class Airfoil:
-'''
-Airfoil class for processing pressure distribution data of
-2D cross sections of wing designs. For a given input directory,
-xy.dat and alpha<angle>.dat files are expected.
-'''
+    '''
+    Airfoil class for processing pressure distribution data of
+    2D cross sections of wing designs. For a given input directory,
+    xy.dat and alpha<angle>.dat files are expected.
+    '''
     def __init__(self,inputdir):
-	'''
-	Initiation method for the Airfoil class. Gets input directory as input.
-	Runs importfiles, calc_chordlength and calc_delcx_delcy methods upon
-	calling the class.
-	'''
+        '''
+        tiation method for the Airfoil class. Gets input directory as input.
+        s importfiles, calc_chordlength and calc_delcx_delcy methods upon
+        ling the class.
+        '''
 
         self.inputdir=inputdir
         #store input direction
@@ -20,13 +20,13 @@ xy.dat and alpha<angle>.dat files are expected.
         self.calc_delcx_delcy()
 
     def importfiles(self):
-	'''
-	File names inside the directory are stored in a data structure in
-	the class. These names are then checked and the file whose name starts
-	with 'xy' is stored as the geometry data. All the files whose names
-	start with 'alpha' are stored as pressure coefficient data according
-	to the digits following in the file name.
-	'''
+        '''
+        File names inside the directory are stored in a data structure in
+        the class. These names are then checked and the file whose name starts
+        with 'xy' is stored as the geometry data. All the files whose names
+        start with 'alpha' are stored as pressure coefficient data according
+        to the digits following in the file name.
+        '''
 
         self.filenames=[]
         self.alphasets={}
@@ -46,13 +46,16 @@ xy.dat and alpha<angle>.dat files are expected.
                                delimiter.")
         xyflag=False
         alphaflag=False
-	#Flags are True if there exists xy and alpha files.
+        #Flags are True if there exists xy and alpha files.
         for name in self.filenames:
             if name.startswith('alpha'):
                 alphaflag=True
 
                 #select files that start with 'alpha'
                 try:
+                    if name[5:name.find('.dat')]=='':
+                        raise RuntimeError("Data file format expected is\
+                                           .dat")
                     datakey=float(name[5:name.find('.dat')])
                 except ValueError:
                     raise RuntimeError("Expected digits after 'alpha'\
@@ -107,10 +110,10 @@ xy.dat and alpha<angle>.dat files are expected.
                                     alpha<value>.dat).")
 
     def calc_chordlength(self):
-	'''
-	Distance between all nodes are compared and the maximum is chosen
-	to be the chord length. Horizontal convex airfoil design is assumed.
-	'''
+        '''
+        Distance between all nodes are compared and the maximum is chosen
+        to be the chord length. Horizontal convex airfoil design is assumed.
+        '''
         #initiate node numbers for nodes in leading and trailing edge
         dist=0
 
@@ -132,13 +135,13 @@ xy.dat and alpha<angle>.dat files are expected.
         self.chord_length=copy.copy(dist)
 
     def calc_delcx_delcy(self):
-	'''
-	By multiplying the pressure coefficient by the panel length and non-
-	dimensionalizing with the chord length the dimensionless force
-	for each panel is calculated. This force is then decomposed to cartesian
-	coordinates and then each of these components are summed for all the
-	panels. Then for each attack angle, the lift coefficient is calculated.
-	'''
+        '''
+        By multiplying the pressure coefficient by the panel length and non-
+        dimensionalizing with the chord length the dimensionless force
+        for each panel is calculated. This force is then decomposed to cartesian
+        coordinates and then each of these components are summed for all the
+        panels. Then for each attack angle, the lift coefficient is calculated.
+        '''
         self.panel_delx={}
         self.panel_dely={}
         self.panel_length={}
@@ -220,12 +223,12 @@ xy.dat and alpha<angle>.dat files are expected.
             #to a dictionary
 
     def __repr__(self):
-	'''
-	Upon calling print() for the Airfoil object, for each
-	alpha value, lift coefficient and stagnation points
-	with the corresponding pressure coefficients are displayed
-	in a tabular form.
-	'''
+        '''
+        Upon calling print() for the Airfoil object, for each
+        alpha value, lift coefficient and stagnation points
+        with the corresponding pressure coefficients are displayed
+        in a tabular form.
+        '''
         l1='Test Case: {}\n'.format(self.title)
         l2=' alpha        cl               stagnation pt\n'
         l3=' ______     ________    _________________________\n'
