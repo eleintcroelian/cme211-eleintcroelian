@@ -8,9 +8,9 @@ class Airfoil:
     '''
     def __init__(self,inputdir):
         '''
-        tiation method for the Airfoil class. Gets input directory as input.
-        s importfiles, calc_chordlength and calc_delcx_delcy methods upon
-        ling the class.
+        Initiation method for the Airfoil class. Gets input directory as input.
+        Runs importfiles, calc_chordlength and calc_delcx_delcy methods upon
+        calling the class.
         '''
 
         self.inputdir=inputdir
@@ -68,12 +68,15 @@ class Airfoil:
                     for line in alphafile:
                     #store alpha as keys and corresponding dataset to
                     #dictionary
-
+                        try:
+                            numeric_line=float(line.split()[0])
+                        except ValueError:
+                            raise RuntimeError("Alpha data contains non numeric\
+                                               values.") 
                         if datakey in self.alphasets:
-                            self.alphasets[datakey].append(
-                                    float(line.split()[0]))
+                            self.alphasets[datakey].append(numeric_line)
                         else:
-                            self.alphasets[datakey]=[float(line.split()[0])]
+                            self.alphasets[datakey]=[numeric_line]
 
             elif name.startswith('xy'):
                 #store xy file to another dictionary
@@ -87,8 +90,14 @@ class Airfoil:
                     #skip header
 
                     for line in xyfile:
-                        self.nodes[nodenumber]=(float(line.split()[0]),
-                                  float(line.split()[1]))
+                        try:
+                            numeric_line1=float(line.split()[0])
+                            numeric_line2=float(line.split()[1])
+                        except ValueError:
+                            raise RuntimeError("XY data contains non numeric\
+                                               values.")
+                        self.nodes[nodenumber]=(numeric_line1,
+                                  numeric_line2)
                         nodenumber+=1
                         #assign each line in xy file as a node, give an index
                         #and store coordinates as a tuple
@@ -245,4 +254,3 @@ class Airfoil:
                     self.stagpoint[alpha][0][1],self.stagpoint[alpha][1])
 
         return l1+l2+l3+l4
-
