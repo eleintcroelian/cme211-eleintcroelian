@@ -70,9 +70,11 @@ class Airfoil:
                     #dictionary
                         try:
                             numeric_line=float(line.split()[0])
-                        except ValueError:
-                            raise RuntimeError("Alpha data contains non numeric\
-                                               values.") 
+                        except Exception:
+                            raise RuntimeError('Alpha '+
+                                               'data contains non numeric '+
+                                               'values or an extra '+
+                                               'empty line.')
                         if datakey in self.alphasets:
                             self.alphasets[datakey].append(numeric_line)
                         else:
@@ -93,9 +95,11 @@ class Airfoil:
                         try:
                             numeric_line1=float(line.split()[0])
                             numeric_line2=float(line.split()[1])
-                        except ValueError:
-                            raise RuntimeError("XY data contains non numeric\
-                                               values.")
+                        except Exception:
+                            raise RuntimeError('XY '+ 
+                                               'data contains non numeric '+
+                                               'values or an extra '+
+                                               'empty line.')
                         self.nodes[nodenumber]=(numeric_line1,
                                   numeric_line2)
                         nodenumber+=1
