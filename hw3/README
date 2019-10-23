@@ -41,3 +41,7 @@ Lastly, overriding the class representation, we invoke a table of results
 when print(<airfoil object>) is called. For each alpha data set, lift
 coefficient and stagnation points are represented.
 
+#--writeup_1
+#--how did you implement OOP (specifically abstraction and encapsulation) in your
+#--program?
+#--END

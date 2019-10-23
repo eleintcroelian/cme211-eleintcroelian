@@ -1,5 +1,9 @@
 import copy,math,os
 
+#--functionality_0
+#--good job handling many kinds of errors!
+#--END
+
 class Airfoil:
     '''
     Airfoil class for processing pressure distribution data of
