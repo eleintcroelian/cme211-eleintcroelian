@@ -1,0 +1,14 @@
+README File for CME211 Midterm - Mert Can Simsek
+
+Since we have a time limit for this assignment, I chose procedural approach for the ease of
+debugging, and also I haven't spent enough time with object oriented approach to feel more
+comfortable with it. The midterm does not ask for error handling but I could add error handling
+if I had more time to work on it.
+
+Finding and dropping the lowest grade function uses min() and index() functions for each student.
+I'd assume both functions are linear search functions so I'd expect them to have O(n) complexity.
+The function find_lowest() in the code also contains compute_assignment_scores() which is again O(n)
+complexity. Since none of these functions are nested, I'd estimate the overall complexity O(3n).
+
+I've hand calculated the given example grades for 2 students and got the same results with the code.
+
