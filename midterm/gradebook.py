@@ -10,7 +10,8 @@ m=int(sys.argv[3])
 k=int(sys.argv[4])
 
 if len(sys.argv)==6:
-    weights=copy.copy(sys.argv[4])
+    weight_str=sys.argv[5].replace('[', ' ').replace(']', ' ').replace(',', ' ').split()
+    weights=[float(i) for i in weight_str]
     if sum(weights) !=1.0:
         print('Weights should sum up to 1.0\n')
         sys.exit(0)
