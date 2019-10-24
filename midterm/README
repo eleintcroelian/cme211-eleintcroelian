@@ -11,4 +11,5 @@ The function find_lowest() in the code also contains compute_assignment_scores()
 complexity. Since none of these functions are nested, I'd estimate the overall complexity O(3n).
 
 I've hand calculated the given example grades for 2 students and got the same results with the code.
-
+Also added another test file which is again easy to hand calculate to see if I got the same results,
+which I did.
