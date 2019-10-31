@@ -109,12 +109,12 @@ class Truss:
             
         except IndexError:
             raise RuntimeError("Truss geometry not suitable for static\
-                               equilbrium analysis")
+ equilibrium analysis")
             # Detects if the number of equations are equal to the number of 
             # unknowns, if not, system is overdetermined, and raises an error.
         except Warning:
             raise RuntimeError("Cannot solve the linear system, unstable\
-                              truss?")
+ truss?")
             # Detects if singularity warning was raised by spsolve(), if yes,
             # which leads to an unstable system, raises a run time error.
     def __repr__(self):
