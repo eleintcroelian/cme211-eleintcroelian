@@ -1,0 +1,140 @@
+FILE:          gradebook.py
+DESIGN         
+
+COMMENTS:
+-Since strings are immutable, it should be safe just to take
+-grades_file = sys.argv[1]
+
+RELEVANT CODE:
+grades_file=copy.copy(sys.argv[1])
+output_file=copy.copy(sys.argv[2])
+
+                  
+
+
+--------------------------
+FILE:          gradebook.py
+DESIGN         
+
+COMMENTS:
+-Great solution! We were actually intending [ ] to be optional parameters
+-but if given in this format your code works well.
+
+RELEVANT CODE:
+weight_str=sys.argv[5].replace('[', ' ').replace(']', ' ').replace(',', ' ').split()
+
+                  
+
+
+--------------------------
+FILE:          gradebook.py
+FUNCTIONALITY  
+
+COMMENTS:
+-Beware that when comparing floats, you should generally use math.isclose
+-or some other lenient criterion, since adding floats sometimes adds a
+-0.00000000001 that makes the following sometimes False (due to numerical
+-precision)
+
+RELEVANT CODE:
+if sum(weights) !=1.0:
+
+                  
+
+
+--------------------------
+FILE:          gradebook.py
+DESIGN         
+
+COMMENTS:
+-Nice and concise dot product!
+
+RELEVANT CODE:
+current_hw=scores[(hw_n)*k:(hw_n)*k+k]
+        weightedsum=sum(i[0] * i[1] for i in zip(current_hw, weights))
+        weighted_hws[hw_n]=weightedsum
+
+                  
+
+
+--------------------------
+FILE:          gradebook.py
+DESIGN         
+
+COMMENTS:
+-Code gets quite dense here; you may want to put some comments or skip
+-some intermediate variables for the sake of readability.
+
+RELEVANT CODE:
+for suid in hws.keys():
+        weighted_hws=compute_assignment_scores(hws[suid],weights,k,m)
+        min_hw_index=weighted_hws.index(min(weighted_hws))
+        weighted_hws.remove(min(weighted_hws))
+        final_hw[suid]=weighted_hws
+        removed_hw[suid]=min_hw_index
+
+                  
+
+
+--------------------------
+FILE:          gradebook.py
+DESIGN         
+
+COMMENTS:
+-calculate_final doesn't seem to need r_hw here.
+
+RELEVANT CODE:
+final_grades=calculate_final(f_hw,r_hw,exams,m)
+
+                  
+
+
+--------------------------
+FILE:          gradebook.py
+DESIGN         
+
+COMMENTS:
+-Everything is compactly expressed as a meaningful function;
+-good work.
+
+                  
+
+
+--------------------------
+FILE:          gradebook.py
+FUNCTIONALITY  
+
+COMMENTS:
+-Code runs correctly.
+
+                  
+
+
+--------------------------
+FILE:          README
+WRITEUP        
+
+COMMENTS:
+-Good comments. Missing example of how to invoke the program with the
+-test data.
+-Correct that complexity is O(3n), which is equivalent to O(n) (constants
+-are dropped in the definition of O( ).
+
+POINTS DEDUCTED: 1
+
+
+--------------------------
+
+GRADING TA                  
+SUNet ID: flam, GitHub ID fredriclam
+###################################################
+
+FUNCTIONALITY SCORE:                     65
+###################################################
+
+DESIGN SCORE:                            25
+###################################################
+
+WRITEUP SCORE:                            9
+###################################################
+If you have any problem about grading result, please file an issue in your GitHub repo.
