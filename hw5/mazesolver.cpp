@@ -36,11 +36,9 @@ int main(int argc, char *argv[])
     {
         // Read the size of the data and make sure storage is sufficient
         int n_row, n_col;
-        int row_max = 1000;
-        int col_max = 1000;
         f >> n_row >> n_col;
 
-        if (n_row > row_max || n_col > col_max)
+        if (n_row > 1000 || n_col > 1000)
         /* Verifying that appropriate static array storage is available 
         for storing the maze. */
         {
