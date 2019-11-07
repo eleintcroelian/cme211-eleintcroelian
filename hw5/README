@@ -1,0 +1,32 @@
+Mazesolver reads a maze, computes a solution using the right hand wall 
+following algorithm, and stores the solution in a file. The maze can be up to 
+1000 by 1000 grids. In each maze file, it is expected that the first
+line to contain the number of rows and columns respectively, and each 
+subsequent line to containt the row and column index of a wall location. The
+maze should have one entrance at the top row and only one exit at the bottom
+row. In the solution file, the row and column index of positions as user 
+progresses through the maze is written.
+
+In mazesolver.cpp, two enumeration types, direction and t are used to 
+represent where the user in maze is faced and to turn to change 
+direction of user. The code first confirms that appropriate command line 
+arguments were provided and if not, it provides a usage message and exits.
+Then it reads the size of the data and make sure storage is sufficient.
+The maze geometry is stored into a 2D array which represents walls as 1,
+and corridors as 0. It finds the maze entrance at the opening in the first 
+row and stores it as the first position in the solution file. It opens up a 
+file to write with the name as 3rd input argument, and starting from entrance,
+it finds the next grid following the right hand wall follower algorithm. The 
+sequence of the algorithm is as follows: If there is no wall ahead, and there
+is a wall on the right side, go to the grid in front, else, if there is no wall
+at right, turn right, else, if there is no wall at left, turn left, and if
+there are walls at left, right and front, turn back. After each step, the
+solution is written in a seperate line whic is the current grid of at that
+step.
+
+In checksoln.py, we test the solution found with the c++ program. We take
+the name of a maze file and the name of a maze solution file as two inputs.
+It reads the files and confirms that user enters the maze via the opening in 
+the top row, that user doesn't cross any walls during the trip through the 
+maze, and reaches to the last row which is the exit. It provides output
+to the screen that the solution is either valid or invalid.
