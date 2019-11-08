@@ -6,6 +6,14 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import spsolve
 
+#--writeup_-1
+#--good comments and writeup
+#--END
+
+#--functionality_0
+#--well done overall
+#--END
+
 class Truss:
     '''Truss class for loading and analyzing a 2D truss using
     the method of joints. The initialization

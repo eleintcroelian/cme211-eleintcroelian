@@ -1,0 +1,34 @@
+FILE:          truss.py
+WRITEUP        
+
+COMMENTS:
+-good comments and writeup
+
+                  
+
+
+--------------------------
+FILE:          truss.py
+FUNCTIONALITY  
+
+COMMENTS:
+-well done overall
+
+                  
+
+
+--------------------------
+
+GRADING TA                  
+SUNet ID: lwarne, GitHub ID: lwarne
+###################################################
+
+FUNCTIONALITY SCORE:                      +
+###################################################
+
+DESIGN SCORE:                             +
+###################################################
+
+WRITEUP SCORE:                           ++
+###################################################
+If you have any problem about grading result, please file an issue in your GitHub repo.
