@@ -1,8 +1,16 @@
+#--design_0
+#--Recommended to have one import per line.
+#--START
 import copy,sys
+#--END
 import numpy as np
 
 if len(sys.argv)==3:
+#--design_0
+#--copy.copy is not necessary for strings
+#--START
     maze_file=copy.copy(sys.argv[1])
+#--END
     solution_file=copy.copy(sys.argv[2])
 else:
     print('Usage: $python checksoln.py maze1.txt solution1.txt\n')
@@ -56,8 +64,12 @@ if not np.array_equal(solution[-1],[maze_row-1,exit_col]):
     print('Solution does not finish at exit.\n')
     sys.exit(0)
 
+#--design_0
+#--Good alternative to directly accessing the element in a 2D np.array
+#--START
 maze_set = set(tuple(i) for i in maze)
 sol_set = set(tuple(i) for i in solution)
+#--END
 # maze_set and sol_set are created to do a faster comparison to detect
 # whether solution contains a wall grid or not.
 
@@ -73,3 +85,11 @@ for j in solution:
         sys.exit(0)
   
 print('Solution succesful!\n')
+
+#--design_1
+#--What if the player "teleports?" Does this python code check for that?
+#--For example, a path that goes from (1,1) to (3,3) should not be valid.
+#--A path that contains the (2,2), (2,2) consecutively should also not
+#--be valid.
+#--It seems this code does not check for these cases.
+#--END

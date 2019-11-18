@@ -1,6 +1,13 @@
+//--design_0
+//--As for Python, please list the includes in alphabetical order.
+//--START
 #include <iostream>
 #include <fstream>
+//--END
 
+//--design_0
+//--Good!
+//--START
 enum direction
 /* Direction class representing 
 where the user in maze is faced. */
@@ -18,6 +25,7 @@ enum turn
     turn_back,
     turn_not
 };
+//--END
 int main(int argc, char *argv[])
 {
     if (argc < 3)
@@ -258,3 +266,24 @@ int main(int argc, char *argv[])
     }
     return 0;
 }
+
+//--design_0
+//--Good work! The code was a little long. Here's a neat simplification
+//--for the turning mechanism. Suppose we enumerate in clockwise direction,
+//--i.e., left, up, right, down.
+//--Since these are internally represented by integers 0, 1, 2, 3, we can
+//--simply add 1 to turn right (and subtract 1 to turn left).
+//--The only thing we need to watch out for is turning 3 into 0, but we can
+//--handle that case by using the modulo (%) operator: turning right is
+//--then as easy as
+//--  (d + 1) % 4
+//--Similarly, turning left can be done with (d - 1) % 4. But since some
+//--compilers return a negative number when a negative argument is passed to
+//--to the module operator, we may use the equivalent
+//--  (d + 3) % 4
+//--to turn left.
+//--You may also want to break down the long passage of code using functions
+//--(not expected for this assignment).
+//--Can you think of other ways of making the code more concise?
+//--Using enum was a good start!
+//--END

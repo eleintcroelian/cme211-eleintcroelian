@@ -35,3 +35,8 @@ Then it reads the files and confirms that user enters the maze via the opening i
 the top row, that user doesn't cross any walls during the trip through the 
 maze, and reaches to the last row which is the exit. It provides output
 to the screen that the solution is either valid or invalid.
+
+#--writeup_0
+#--Good writeup! Good idea to describe the encoding of wall or
+#--no-wall .
+#--END

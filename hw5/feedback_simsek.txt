@@ -1,0 +1,149 @@
+FILE:          README
+WRITEUP        
+
+COMMENTS:
+-Good writeup! Good idea to describe the encoding of wall or
+-no-wall .
+
+                  
+
+
+--------------------------
+FILE:          checksoln.py
+DESIGN         
+
+COMMENTS:
+-Recommended to have one import per line.
+
+RELEVANT CODE:
+import copy,sys
+
+                  
+
+
+--------------------------
+FILE:          checksoln.py
+DESIGN         
+
+COMMENTS:
+-copy.copy is not necessary for strings
+
+RELEVANT CODE:
+maze_file=copy.copy(sys.argv[1])
+
+                  
+
+
+--------------------------
+FILE:          checksoln.py
+DESIGN         
+
+COMMENTS:
+-Good alternative to directly accessing the element in a 2D np.array
+
+RELEVANT CODE:
+maze_set = set(tuple(i) for i in maze)
+sol_set = set(tuple(i) for i in solution)
+
+                  
+
+
+--------------------------
+FILE:          checksoln.py
+DESIGN         
+
+COMMENTS:
+-What if the player "teleports?" Does this python code check for that?
+-For example, a path that goes from (1,1) to (3,3) should not be valid.
+-A path that contains the (2,2), (2,2) consecutively should also not
+-be valid.
+-It seems this code does not check for these cases.
+
+POINTS DEDUCTED: 1
+
+
+--------------------------
+FILE:          mazesolver.cpp
+DESIGN         
+
+COMMENTS:
+-As for Python, please list the includes in alphabetical order.
+
+RELEVANT CODE:
+#include <iostream>
+#include <fstream>
+
+                  
+
+
+--------------------------
+FILE:          mazesolver.cpp
+DESIGN         
+
+COMMENTS:
+-Good!
+
+RELEVANT CODE:
+enum direction
+/* Direction class representing 
+where the user in maze is faced. */
+{
+    left,
+    right,
+    up,
+    down
+};
+enum turn
+/* Turn class to change direction of user.*/
+{
+    turn_left,
+    turn_right,
+    turn_back,
+    turn_not
+};
+
+                  
+
+
+--------------------------
+FILE:          mazesolver.cpp
+DESIGN         
+
+COMMENTS:
+-Good work! The code was a little long. Here's a neat simplification
+-for the turning mechanism. Suppose we enumerate in clockwise direction,
+-i.e., left, up, right, down.
+-Since these are internally represented by integers 0, 1, 2, 3, we can
+-simply add 1 to turn right (and subtract 1 to turn left).
+-The only thing we need to watch out for is turning 3 into 0, but we can
+-handle that case by using the modulo (%) operator: turning right is
+-then as easy as
+-  (d + 1) % 4
+-Similarly, turning left can be done with (d - 1) % 4. But since some
+-compilers return a negative number when a negative argument is passed to
+-to the module operator, we may use the equivalent
+-  (d + 3) % 4
+-to turn left.
+-You may also want to break down the long passage of code using functions
+-(not expected for this assignment).
+-Can you think of other ways of making the code more concise?
+-Using enum was a good start!
+
+                  
+
+
+--------------------------
+
+GRADING TA                  
+SUNet ID: flam, GitHub ID fredriclam
+###################################################
+
+FUNCTIONALITY SCORE:                      +
+###################################################
+
+DESIGN SCORE:                            ok
+###################################################
+
+WRITEUP SCORE:                            +
+###################################################
+If you have any problem about grading result, please file an issue in your GitHub repo.
