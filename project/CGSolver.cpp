@@ -5,10 +5,10 @@
 #include "matvecops.hpp"
 #include "CGSolver.hpp"
 
-int CGSolver(std::vector<double> &val,
-             std::vector<int> &row_ptr,
-             std::vector<int> &col_idx,
-             std::vector<double> &b,
+int CGSolver(std::vector<double> const &val,
+             std::vector<int> const &row_ptr,
+             std::vector<int> const &col_idx,
+             std::vector<double> const &b,
              std::vector<double> &x,
              double tol)
 {
