@@ -46,7 +46,7 @@ int CGSolver(std::vector<double> &val,
         r_next_norm = l2norm(r_next);
         // criteria is the norm of next residual, which should
         // approach to zero if solution is converging
-        if (std::abs(r_next_norm) < tol)
+        if (r_next_norm < tol)
         {
             // If solution is close enough, update x and
             // break loop
