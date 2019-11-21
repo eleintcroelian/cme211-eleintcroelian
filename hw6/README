@@ -1,0 +1,40 @@
+Image is a a C++ class that can read and write JPEG files. It has
+methods to compute the sharpness of the image and smooth (blur) the image
+using a box blur kernel of a specified size. In main.cpp, the class is demonstrated
+where the the provided grayscale image is read and the sharpness of the image
+is computed. Then the image is blured with successively larger box blur kernels
+and the sharpness of each increasingly blurry version of the image are computed.
+
+In image.hpp / image.cpp the image class is contained. It has a constructor that accepts a string
+containing the name of the JPEG file to be read. The constructor reads the file and stores the image 
+data as a data attribute.
+
+Save() method writes the current version of the image to a JPEG file. The
+method takes a string containing the name of the JPEG file to be written. 
+If the string is empty the original filename is used.
+
+Convolution method takes input and output 2D boost arrays containing unsigned chars, and a kernel
+which is a 2D boost array with float data type. The input and output should be of the same odd size,
+and square kernels of at least size 3. If the method is called and these requirements are not met 
+an error message is printed and program exits.
+
+While the convulation of pixels that are not close to the boundaries of the image are
+straigthforward, for the pixels that are close to boundary we need an extension of the
+image through the boundaries. To handle this, in Convulation() function, the required 
+extension is found in the beginning and a new data structure is created with extended
+rows and columns. The input data structure is copied to the center of this new data
+structure (data_extended), and the voids are filled with the boundaries of original
+input. With this approach, the need for building a new 2D array for each pixel close to
+boundaries is avoided.
+
+Any int values of pixels is limited to 0-255 to avoid any rounding and underflow / overflow
+errors.
+
+BoxBlur() method accepts one positive integer argument specifying the kernel size and uses the 
+Convolution() method to smooth the image.
+
+Sharpness() method returns an unsigned int representing the sharpness of the image. In this method
+the kernel from equation 2 is used which approximates the Laplacian operator. Like BoxBlur(), 
+Convolution() function is used to find the maximum of the output 2D boost array.
+
+
