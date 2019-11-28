@@ -1,0 +1,216 @@
+\documentclass[10pt]{article}
+
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% LaTeX2e Packages
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{epsfig}
+\usepackage{ifthen}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{eurosym}
+\usepackage{natbib}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage{psfrag}
+\usepackage{color}
+\usepackage{colordvi}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{datetime}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage[skip=2pt,font=scriptsize]{caption}
+%---------------------------------------------------------------------
+% Page Layout
+%---------------------------------------------------------------------
+\setlength{\oddsidemargin}{-10pt}
+\setlength{\evensidemargin}{-10pt}
+\setlength{\textwidth}{175mm}
+\setlength{\parindent}{0mm}
+\setlength{\parsep}{0mm}
+\setlength{\parskip}{2mm}
+\setlength{\topsep}{0mm}
+\setlength{\topmargin}{-15mm}
+\setlength{\textheight}{230mm}
+\setlength{\headsep}{5mm}
+\setlength{\headheight}{12mm}
+\setlength{\footskip}{10mm}
+%\setlength{\itemsep}{0mm}
+\graphicspath{{figs/}}
+
+%---------------------------------------------------------------------
+% Headers
+%---------------------------------------------------------------------
+\pagestyle{fancy}
+\lhead{Mert Can Simsek}
+\rhead{CME 211 Final Project}
+\cfoot[]{\thepage}
+
+%---------------------------------------------------------------------
+% Style
+%---------------------------------------------------------------------
+\renewcommand{\familydefault}{cmr}
+\renewcommand{\labelenumi}{\alph{enumi}}  % alph, Alph, arabic, roman, Roman%
+\begin{document}
+\begin{center}
+    \large \textbf{Finite Difference Solution of a Boundary Value Problem}
+\end{center}
+
+\subsection*{Introduction}
+
+In this project the aim is to solve a thermodynamic system where a hot fluid is being transferred within a pipe, with a constant temperature $T_h$. A series of cold air jets with equal distances from each other are distributed to keep the exterior of the pipe cool, each with a temperature of $T_c$ along the pipe and continuously cool the pipe surface. To find the mean temperature within the pipe walls, one periodic section of the pipe wall is modelled. In Figure \ref{geom}, the 2D geometry of the model is illustrated. 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[height=45mm]{geometry.png}
+    \caption{Overall geometry of the system \cite{p2}}
+  \label{geom}
+\end{figure}
+
+The pipe wall is discretized into an equally spaced Cartesian grid. Then, appropriate boundary conditions at the exposed surfaces of the pipe wall and the periodic boundaries are applied to get the discretization in figure \ref{disc}.
+
+\begin{figure}[ht]
+\begin{subfigure}{.38\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{discretization.png}  
+  \caption{}
+  \label{disc}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  % include second image
+  \includegraphics[width=.9\linewidth]{interiorpoint.png}  
+  \caption{}
+  \label{fig:fully-bended-mesh}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  % include third image
+  \includegraphics[width=.9\linewidth]{leftpoint.png}  
+  \caption{}
+  \label{fig:zoom-mesh}
+\end{subfigure}
+\caption{a) Discretization of the geometry b) Stencils of an interior node c) Stencils of an edge node \cite{p2}}
+\label{fig:mesh}
+\end{figure}
+Edges of the model are periodic boundary conditions, and cold isothermal boundary is described by the function:
+$$T(x)=-T_{c}\left(\exp \left(-10(x-L / 2)^{2}\right)-2\right)$$
+
+Using the second order finite difference approximation of the steady state heat equation (below) for the discretized geometry, a linear system of equations is achieved $Au=b$.
+
+$$\frac{1}{h^{2}}\left(u_{i-1, j}+u_{i+1, j}+u_{i, j-1}+u_{i, j+1}-4 u_{i, j}\right)=0$$
+
+\subsection*{\texttt{heat.cpp} and \texttt{sparse.cpp}:}
+
+The two main classes used in the project are \texttt{heat.cpp} and \texttt{sparse.cpp}. In \texttt{sparse.cpp}, a SparseMatrix class is defined in which three vectors define the row, column and values of nonzero elements of a matrix. The methods used in this class are
+
+\begin{itemize}
+    \item \texttt{Resize}, used for updating size of the matrix,
+    \item \texttt{AddEntry}, method for adding a nonzero element to matrix,
+    \item  \texttt{ConvertToCSR}, method to change format of the matrix from COO to CSR.
+\end{itemize}
+
+In \texttt{heat.cpp}, \texttt{HeatEquation2D} class is defined and using \texttt{SparseMatrix} class, two methods handle the 2D equation of heat problem:
+
+\begin{itemize}
+    \item \texttt{Setup}: Here, matrix $A$ is formed row by row while right hand side $b$ is formed at the same time. A helper matrix $M$ is also built here which contains node numbers. Node numbering is held in column order, starting from the bottom left non-boundary node. One side note to point out is, since matrix A is negative definite and we need a positive definite matrix for guaranteed convergence for conjugate gradient in $n$ steps for an $n\times n$ matrix, we form $-A$ which is positive definite and solve for $-Au=-b$.
+    \item \texttt{Solve}: In this method, first, the format of matrix A is converted to CSR and an initial guess vector $x$ with $1.0$'s for all of its elements is created, and \texttt{CGSolver()} is called to update it in place with a tolerance of $1e-05$.
+\end{itemize}
+
+
+\subsection*{CG Solver}
+\texttt{CGSolver.cpp} is a function that uses conjugate gradient algorithm \cite{p1} to solve a linear system equations $Ax=b$ iteratively where A is a SparseMatrix class object in CSR format. A few notes on the CGSolver function:
+\begin{itemize}
+    \item The solver runs a maximum number of iterations equal to the size of the linear system.
+    \item The initial guess is updated in-place as the right hand side and the other inputs are unchanged.
+    \item $x$ is written in a text file after every 10 iterations, including the first and last iterations, with the name prefix followed by iteration number as the name of file.
+    \item Function returns the number of iterations held to converge the solution to the specified tolerance, or -1 if the solver did not converge. 
+\end{itemize}
+  
+The algorithm of CGSolver can be found in the Appendix.
+
+\subsection*{User's Guide}
+
+The software consists of two main programs: \texttt{main.cpp} and \texttt{postprocess.py}. In \texttt{main.cpp}, an input file and a prefix for the output files are required. The usage would be as follows:
+
+    \texttt{./main <input file> <soln prefix>}
+
+Input file should contain information describing the geometry (length, width, and h) which are listed in the first row. Tc and Th should be listed in the second row.
+
+An example input file for L=2.0, width=1.0, h=0.1, $T_c$=30 and $T_h$=120  would be:
+
+\texttt{2.0 1.0 0.1\newline
+        30 120}
+
+When initiated, \texttt{main} reads the given input file and builds a \texttt{HeatEquation2D} class with the given parameters, in which a \texttt{SparseMatrix} class is initialized. After \texttt{Setup} method is called a status check is triggered whether the matrix setup of A and vector b was successful or not.  The same status check is performed after \texttt{Solve} is held as well. The output after \texttt{Solve} is called are the solution of non-boundary nodes in every 10 iterations including first and last with names starting with solution prefix given as input followed by the iteration number with fixed width of 4 digits with leading zeros.
+
+To visualize the outputs of \texttt{main.cpp}, \texttt{postprocess.py} needs to be called with the following usage:
+
+\texttt{\$ python3 postprocess.py <input file> <solution file>}
+
+\texttt{postprocess.py} creates a grid with the solution and boundary conditions and creates a pseudo-color plot with a isoline of the mean temperature in the wall section. In the command prompt, it shows the mean temperature and the input file associated with it. If the input file is not associated with the output file or one of the files could not be found, it raises a run-time error.
+
+\subsection*{Example Outputs}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{input2.png}
+     \caption{input02.txt}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{input1.png}
+    \caption{input01.txt}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.35\linewidth}
+    \includegraphics[width=\linewidth]{input0.png}
+    \caption{input0.txt}
+  \end{subfigure}
+  \caption{Output plots of given input files}
+  \label{fig:coffee3}
+\end{figure}
+
+\clearpage
+
+\begin{thebibliography}{9}
+\bibitem{p1}
+CME 211 Project Part I Handout, Fall 2019
+
+\bibitem{p2}
+CME 211 Project Part II Handout, Fall 2019
+\end{thebibliography}
+\subsection{Appendix}
+\begin{algorithm}
+\DontPrintSemicolon
+\KwData{A, a SparseMatrix object in CSR format, x, the initial guess and b, the RHS for $Ax=b$} \KwResult{Number of iterations took for updating x s.t $|r|<tol$ for $r=Ax-b$ }
+\Begin{
+  $Ax \longleftarrow A \times x$\;
+  $r_0 \longleftarrow Ax-b$\;
+  $p_0 \longleftarrow r_0$\;
+  Initialize $x_{n+1}, r_{n+1}, p_{n+1}$\;
+  \texttt{niter}=0\;
+  \texttt{nitermax}= size of linear system\;
+    \While{niter $\leq$ nitermax}{
+     \texttt{niter}++\;
+    $\alpha = \frac{(r_n^T r_n)}{(p_n^T A p_n)}$\;
+    $x_{n+1}= x_n + \alpha_n p_n$\;
+    $r_{n+1}= r_n - \alpha_n A p_n$\;
+    \eIf{$|r_{n+1}| < tol$}{
+      $x \longleftarrow x_{n+1}$\;
+      break while loop\;
+      }{
+      $\beta_n = (r_{n+1}^T r_{n+1})/(r_n^T r_n)$\;
+      $p_{n+1} = r_{n+1} + \beta_n p_n$\;
+      }
+    }
+    return \texttt{niter};
+  }
+\caption{Conjugate Gradient}
+\end{algorithm}
+\end{document}

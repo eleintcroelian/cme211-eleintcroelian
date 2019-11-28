@@ -137,7 +137,7 @@ int HeatEquation2D::Solve(std::string soln_prefix)
     std::vector<double> x;
     x.resize((unsigned int)this->n_unk, 1);
     std::fill(x.begin(), x.end(), 0.);
-    std::cout << std::endl;
+    // std::cout << std::endl;
     // converting A to CSR format
     A.ConvertToCSR();
     // calling CGSolver to find x in place while writing it in output files
