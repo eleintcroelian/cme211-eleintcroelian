@@ -1,3 +1,7 @@
+//--functionality_0
+//--Great work, your code correctly solves the provided linear systems!
+//--END
+
 #include <cmath>
 #include <fstream>
 #include <iostream>
@@ -5,7 +9,13 @@
 #include "matvecops.hpp"
 #include "CGSolver.hpp"
 
+//--writeup_0
+//--Consider adding a string indicating what the function does,
+//--its arguments and return value (Analogous to a Python docstring).
+//--START
+
 int CGSolver(std::vector<double> const &val,
+//--END
              std::vector<int> const &row_ptr,
              std::vector<int> const &col_idx,
              std::vector<double> const &b,

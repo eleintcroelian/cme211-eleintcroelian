@@ -1,0 +1,38 @@
+FILE:          CGSolver.cpp
+FUNCTIONALITY  
+
+COMMENTS:
+-Great work, your code correctly solves the provided linear systems!
+
+                  
+
+
+--------------------------
+FILE:          CGSolver.cpp
+WRITEUP        
+
+COMMENTS:
+-Consider adding a string indicating what the function does,
+-its arguments and return value (Analogous to a Python docstring).
+
+RELEVANT CODE:
+int CGSolver(std::vector<double> const &val,
+
+                  
+
+
+--------------------------
+
+GRADING TA                  
+SUNet ID: frederme, GitHub ID fredmell
+###################################################
+
+FUNCTIONALITY SCORE:                      +
+###################################################
+
+DESIGN SCORE:                             +
+###################################################
+
+WRITEUP SCORE:                            +
+###################################################
+If you have any problem about grading result, please file an issue in your GitHub repo.
