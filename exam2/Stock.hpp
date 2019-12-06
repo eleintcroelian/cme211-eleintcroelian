@@ -27,4 +27,6 @@ public:
 
     //Print results
     void PrintResults();
+    //Save results
+    void SaveResults();
 };

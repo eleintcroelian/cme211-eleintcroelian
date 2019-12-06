@@ -16,13 +16,15 @@ int main(int argc, char *argv[])
         {
             data_vector.push_back(data);
         }
+        f.close();
         std::string tckr = argv[2];
         Stock stock(data_vector, tckr); // Constructing the class
         stock.dailyReturn();            // Calculating daily returns
         stock.meanReturn();             // Calculating mean returns
         stock.varReturn();              // Calculating variance of returns
-        stock.PrintResults();           // Printing results
+        stock.SaveResults();            // Saves results in results.txt
         return 0;
     }
+    f.close();
     return 1;
 }

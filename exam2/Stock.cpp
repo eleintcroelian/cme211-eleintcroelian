@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include "Stock.hpp"
@@ -44,4 +45,15 @@ void Stock::PrintResults()
     std::cout << this->tckr << std::endl;
     std::cout << this->meanreturn << std::endl;
     std::cout << this->var << std::endl;
+}
+
+void Stock::SaveResults()
+{
+
+    std::ofstream resultfile ("results.txt");
+    resultfile << this->tckr << std::endl;
+    resultfile << this->meanreturn << std::endl;
+    resultfile << this->var << std::endl;
+    resultfile.close();
+
 }
