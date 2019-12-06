@@ -1,10 +1,15 @@
 1.1 
 
-A: 3
+A: 3 Both variables same type, no problem should arise
+
 B: 2 Index outside of static array size
-C: 3 
+
+C: 3 Both array and dt are double, so no errors will be rose
+
 D: 1 type of variable declared as int first
+
 E: 2 since char can store up to 255 values with 8 bits, when the value is more than 255, it overflows. also, (p+1) converts the variable to be printed to an int implicitly, so the printed value would be 1
+
 F: Since computer architectures are designed to hold finite significant digits of numbers, the precision of arithmetic operations have a limit. Computing the product of small numbers may not be accurate if the rounding errors accumulate at a considerable level. So the programmer should be careful about the rounding-off errors.
 
 1.2
