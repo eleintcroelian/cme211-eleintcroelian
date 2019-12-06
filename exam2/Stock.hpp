@@ -22,10 +22,9 @@ public:
     //calculate mean return
     void meanReturn(/*add args if neccecary*/);
 
-    //calcualte return variance
+    //calculate return variance
     void varReturn(/*add args if neccecary*/);
 
+    //Print results
     void PrintResults();
-
-    /* add additional methods as needed */
 };

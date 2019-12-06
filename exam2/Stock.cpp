@@ -31,7 +31,6 @@ void Stock::meanReturn()
 void Stock::varReturn()
 {
     int n = (int)this->dailyvec.size();
-    //std::cout << n << std::endl;
     double sum = 0.;
     for (unsigned int i = 0; i != this->dailyvec.size() - 1; i++)
     {
