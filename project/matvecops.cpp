@@ -1,10 +1,10 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
-std::vector<double> csr_vec_mult(std::vector<double> val,
-                                 std::vector<int> row_idx,
-                                 std::vector<int> col_idx,
-                                 std::vector<double> x)
+std::vector<double> csr_vec_mult(const std::vector<double> &val,
+                                 const std::vector<int> &row_idx,
+                                 const std::vector<int> &col_idx,
+                                 const std::vector<double> &x)
 {
     const auto n = x.size();
     std::vector<double> y(n, 0.);
@@ -21,10 +21,10 @@ std::vector<double> csr_vec_mult(std::vector<double> val,
     }
     return y;
 }
-std::vector<double> csr_T_vec_mult(std::vector<double> val,
-                                   std::vector<int> row_idx,
-                                   std::vector<int> col_idx,
-                                   std::vector<double> x)
+std::vector<double> csr_T_vec_mult(const std::vector<double> &val,
+                                   const std::vector<int> &row_idx,
+                                   const std::vector<int> &col_idx,
+                                   const std::vector<double> &x)
 {
     auto n = x.size();
     std::vector<double> y(n, 0.);
@@ -43,8 +43,8 @@ std::vector<double> csr_T_vec_mult(std::vector<double> val,
     return y;
 }
 
-std::vector<double> vec_subtract(std::vector<double> a,
-                                 std::vector<double> b)
+std::vector<double> vec_subtract(const std::vector<double> &a,
+                                 const std::vector<double> &b)
 {
     auto n = a.size();
     std::vector<double> y(n);
@@ -56,8 +56,8 @@ std::vector<double> vec_subtract(std::vector<double> a,
     return y;
 }
 
-std::vector<double> vec_add(std::vector<double> a,
-                            std::vector<double> b)
+std::vector<double> vec_add(const std::vector<double> &a,
+                            const std::vector<double> &b)
 {
     auto n = a.size();
     std::vector<double> y(n);
@@ -69,7 +69,7 @@ std::vector<double> vec_add(std::vector<double> a,
     return y;
 }
 
-double l2norm(std::vector<double> a)
+double l2norm(const std::vector<double> &a)
 {
     auto n = a.size();
     double norm = 0.;
@@ -82,8 +82,8 @@ double l2norm(std::vector<double> a)
     //Square root of the sum is L2 norm
 }
 
-double vec_T_vec_mult(std::vector<double> a,
-                      std::vector<double> b)
+double vec_T_vec_mult(const std::vector<double> &a,
+                      const std::vector<double> &b)
 {
     auto n = a.size();
     double y = 0.;
@@ -94,8 +94,8 @@ double vec_T_vec_mult(std::vector<double> a,
     }
     return y;
 }
-std::vector<double> vec_sca_mult(double b,
-                                 std::vector<double> a)
+std::vector<double> vec_sca_mult(const double &b,
+                                 const std::vector<double> &a)
 {
     auto n = a.size();
     std::vector<double> y(n);

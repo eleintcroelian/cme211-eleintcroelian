@@ -1,7 +1,7 @@
 import copy,sys,math 
-import numpy as np      
+import numpy as np
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
 
 if len(sys.argv) !=3:
@@ -56,10 +56,10 @@ try:
     for i in range((n_y-2)*n_x,(n_y-1)*n_x):
         BC[i]=copy.copy(Th)
         
-    k=0;
+    k=0
     for i in range((n_y-1)*n_x,(n_y)*n_x):
-        BC[i]=-Tc*(math.exp(-10*pow((k-length/2),2))-2);
-        k=k+h;
+        BC[i]=-Tc*(math.exp(-10*pow((k-length/2),2))-2)
+        k=k+h
     # sol_grid is the grid form of solution including boundary conditions
     sol_grid=np.zeros((n_y,n_x))
     for i in range(0,n_y):
@@ -71,7 +71,7 @@ try:
             sol_grid[i,j]=sol[(M[i,j]-1)]
     
     for i in range(0,n_y-1):
-       sol_grid[i,n_x-1]=sol_grid[i,0];
+       sol_grid[i,n_x-1]=sol_grid[i,0]
     # Mean temp is the average temparature in the grid
     meantemp=sol_grid.sum()/sol_grid.size
     # Display input file and Mean temperature
