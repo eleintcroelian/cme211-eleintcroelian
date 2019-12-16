@@ -1,0 +1,35 @@
+FILE:          main.cpp
+FUNCTIONALITY  
+
+COMMENTS:
+-Great work on the project. I hope you enjoy a well deserved winter break!
+
+                  
+
+
+--------------------------
+FILE:          writeup.tex
+WRITEUP        
+
+COMMENTS:
+-Good writeup! Remember to specifically cite the references of which the figures
+-were obtained.
+
+                  
+
+
+--------------------------
+
+GRADING TA                  
+SUNet ID: frederme, GitHub ID fredmell
+###################################################
+
+FUNCTIONALITY SCORE:                      +
+###################################################
+
+DESIGN SCORE:                             +
+###################################################
+
+WRITEUP SCORE:                            +
+###################################################
+If you have any problem about grading result, please file an issue in your GitHub repo.
