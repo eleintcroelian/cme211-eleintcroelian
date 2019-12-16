@@ -26,5 +26,9 @@ int main(int argc, char *argv[])
         return 0;
     }
     f.close();
+//--design_0
+//--Return 0 on successful completion
+//--START
     return 1;
+//--END
 }

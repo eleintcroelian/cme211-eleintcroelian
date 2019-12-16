@@ -40,10 +40,21 @@ the squence of the code requires these steps after constructing the class:
     stock.varReturn();
     stock.PrintResults(); 
 
+#--writeup_0
+#--Good consideration! A general way to require these functions
+#--to be called is to call them in the constructor. But since
+#--we outlined the calculations step in the provided main.cpp,
+#--this wasn't necessary.
+#--START
 However, if one these steps are missed, the results would be inaccurate. Thus, a check for the any missing step would be critical. Also, a check for the memory allocation with -fsanitizer would be helpful.
+#--END
 
 I have used a makefile which uses these commands:
 
 g++ -c -o main.o main.cpp  -O3 -std=c++11 -Wall -Wextra -Wconversion
 g++ -c -o Stock.o Stock.cpp  -O3 -std=c++11 -Wall -Wextra -Wconversion
 g++ -o main main.o Stock.o
+
+#--writeup_0
+#--Readme: 15/15
+#--END

@@ -24,7 +24,7 @@ void Stock::dailyReturn()
 void Stock::meanReturn()
 {
     double avg = 0.;
-    for (auto &i : this->dailyvec)
+    for (const auto &i : this->dailyvec)
         avg += i;
     this->meanreturn = avg / (double)this->dailyvec.size();
 }
@@ -33,7 +33,12 @@ void Stock::varReturn()
 {
     int n = (int)this->dailyvec.size();
     double sum = 0.;
+//--functionality_1
+//--Should be summing over every element of dailyvec rather than
+//--only n-1 of them (note the sum in Equation 3 starts from 0).
+//--START
     for (unsigned int i = 0; i != this->dailyvec.size() - 1; i++)
+//--END
     {
         sum += (this->dailyvec[i] - this->meanreturn) * (this->dailyvec[i] - this->meanreturn);
     }
@@ -57,3 +62,12 @@ void Stock::SaveResults()
     resultfile.close();
 
 }
+
+//--design_0
+//--Good use of printing and save methods.
+//--END
+
+//--design_0
+//--Excellent.
+//--Coding: 59/60
+//--END

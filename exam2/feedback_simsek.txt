@@ -1,0 +1,128 @@
+FILE:          README.md
+WRITEUP        
+
+COMMENTS:
+-Good consideration! A general way to require these functions
+-to be called is to call them in the constructor. But since
+-we outlined the calculations step in the provided main.cpp,
+-this wasn't necessary.
+
+RELEVANT CODE:
+However, if one these steps are missed, the results would be inaccurate. Thus, a check for the any missing step would be critical. Also, a check for the memory allocation with -fsanitizer would be helpful.
+
+                  
+
+
+--------------------------
+FILE:          README.md
+WRITEUP        
+
+COMMENTS:
+-Readme: 15/15
+
+                  
+
+
+--------------------------
+FILE:          Stock.cpp
+FUNCTIONALITY  
+
+COMMENTS:
+-Should be summing over every element of dailyvec rather than
+-only n-1 of them (note the sum in Equation 3 starts from 0).
+
+RELEVANT CODE:
+for (unsigned int i = 0; i != this->dailyvec.size() - 1; i++)
+
+POINTS DEDUCTED: 1
+
+
+--------------------------
+FILE:          Stock.cpp
+DESIGN         
+
+COMMENTS:
+-Good use of printing and save methods.
+
+                  
+
+
+--------------------------
+FILE:          Stock.cpp
+DESIGN         
+
+COMMENTS:
+-Excellent.
+-Coding: 59/60
+
+                  
+
+
+--------------------------
+FILE:          main.cpp
+DESIGN         
+
+COMMENTS:
+-Return 0 on successful completion
+
+RELEVANT CODE:
+return 1;
+
+                  
+
+
+--------------------------
+FILE:          short_answers.md
+WRITEUP        
+
+COMMENTS:
+-Correct that (p+1) converts to an int implicitly. Then 255+1
+-as an int is 256, the actual output.
+
+RELEVANT CODE:
+E: 2 since char can store up to 255 values with 8 bits, when the value is more than 255, it overflows. also, (p+1) converts the variable to be printed to an int implicitly, so the printed value would be 1
+
+POINTS DEDUCTED: 1
+
+
+--------------------------
+FILE:          short_answers.md
+WRITEUP        
+
+COMMENTS:
+-The concern here is for the exponent of the floating point type to overflow.
+-For example, multiplying 1e-3 100 times brings us to 1e-300, close to the limit
+-of even the double type.
+-Arithmetic operations is also an issue, perhaps not as severe.
+
+RELEVANT CODE:
+F: Since computer architectures are designed to hold finite significant digits of numbers, the precision of arithmetic operations have a limit. Computing the product of small numbers may not be accurate if the rounding errors accumulate at a considerable level. So the programmer should be careful about the rounding-off errors.
+
+                  
+
+
+--------------------------
+FILE:          short_answers.md
+WRITEUP        
+
+COMMENTS:
+-Short answer: 26/27
+
+                  
+
+
+--------------------------
+
+GRADING TA                  
+SUNet ID: flam, GitHub ID fredriclam
+###################################################
+
+FUNCTIONALITY SCORE:                     39
+###################################################
+
+DESIGN SCORE:                            20
+###################################################
+
+WRITEUP SCORE:                           41
+###################################################
+If you have any problem about grading result, please file an issue in your GitHub repo.
