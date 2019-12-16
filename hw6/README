@@ -37,4 +37,7 @@ Sharpness() method returns an unsigned int representing the sharpness of the ima
 the kernel from equation 2 is used which approximates the Laplacian operator. Like BoxBlur(), 
 Convolution() function is used to find the maximum of the output 2D boost array.
 
-
+#--writeup_-1
+#--Very detailed writeup. Good documentation of the boundary case for
+#--convolution.
+#--END

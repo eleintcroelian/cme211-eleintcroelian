@@ -150,7 +150,11 @@ void image::BoxBlur(unsigned int kernel_size)
     Convolution(data,
                 output,
                 kernel);
+//--design_0
+//--Correct use of this (optional in this context).
+//--START
     this->data = output;
+//--END
 }
 
 unsigned int image::Sharpness(void)
@@ -189,3 +193,19 @@ unsigned int image::Sharpness(void)
     }
     return max_pix;
 }
+
+//--design_0
+//--Good commenting. The frequency of comments is appropriate and feels like
+//--I'm being guided through the code. Well done!
+//--For the image extension part, the logic certainly seems correct.
+//--One way you could have succinctly execute the boundary computations was
+//--to cap the indices outside [0, num_pixels_in_image_length - 1] to the
+//--nearest boundary value by taking the index i and computing
+//--  y = max(0, i)
+//--  z = min(y, num_pixels_in_image_length-1)
+//--where z is your new index; do the same for j.
+//--Then these new indices used on your original image will give you the
+//--extended image values at the original i, j.
+//--
+//--In general, succinct code is less error-prone and easier to read!
+//--END
