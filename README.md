@@ -1,5 +1,5 @@
 # cme211-eleintcroelian
-CME 211 - Software Development for Scientists and Engineers - Fall 2019 - Stanford University
+Mert Can Simsek - CME 211 - Software Development for Scientists and Engineers - Fall 2019 - Stanford University
 
 This repo is created for CME211 homeworks, project and exams.
 
